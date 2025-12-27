@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "introspect"
+version = "0.0.0"
+description = "Introspect: Replication of 'Training Language Models to Explain Their Own Computations'"
+requires-python = ">=3.8"
+dependencies = [
+  "aiohttp",
+  "awscli",
+  "deepspeed",
+  "hydra-core",
+  "peft",
+  "sae-lens",
+  "torchrun",
+]
+
+[project.scripts]
+introspect = "introspect.__main__:main"
+
+
+

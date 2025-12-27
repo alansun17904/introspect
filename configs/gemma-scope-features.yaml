@@ -1,0 +1,37 @@
+# Experiment metadata
+experiment:
+  name: gemma_fd_single
+  tags: ["fsdp", "peft", "single"]
+seed: 42
+hf_name: google/gemma-2-2b
+# SAE and model name on Neuronpedia
+target_model: gemma-2-2b
+sae:
+  model: gemmascope-res-16k
+  layers: 26
+
+# Training configurations
+batch_size: 32
+eval_steps: 50
+save_steps: 50
+test_split: 0.2
+epochs: 3
+val_split: 0.05
+save_total_limit: 2
+logging_steps: 10
+fsdp: "full_shard auto_wrap"
+peft: "lora"
+peft_config:
+  r: 8
+  lora_alpha: 16
+  lora_dropout: 0.05
+  target_modules: "all-linear"
+checkpoint_dir: ./src/introspect/feature_desc/artifacts/checkpoints/checkpoint-550
+
+# Whether or not to sample training data / feature vectors from a single layer
+# If true, layer_id must be specified
+single_layer: true
+layer_id: 20
+
+
+

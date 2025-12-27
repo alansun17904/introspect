@@ -1,0 +1,28 @@
+experiment:
+  name: gemma_attrib_peft
+  tags: ["fsdp", "peft", "all_layers"]
+
+model: google/gemma-2-2b-it
+hf_name: google/gemma-2-2b-it
+
+small: true
+batch_size: 16
+
+seed: 42
+max_tokens: 20
+train_data_size: 20000
+eval_steps: 50
+save_steps: 50
+test_split: 0.1
+epochs: 3
+val_split: 0.1
+save_total_limit: 2
+logging_steps: 10
+fsdp: "full_shard auto_wrap"
+peft: "lora"
+peft_config:
+  r: 8
+  lora_alpha: 16
+  lora_dropout: 0.05
+  target_modules: "all-linear"
+checkpoint_dir: ./src/introspect/input_ablation/artifacts/gemma_attrib_peft/checkpoints/checkpoint-663
